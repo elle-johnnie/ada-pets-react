@@ -19,11 +19,34 @@ class App extends Component {
       currentPet: undefined,
     };
   }
+  
+    onSelectPet = (id) => {
+      console.log('pet selected', id);
+        const pet = this.state.petList.find((pet) =>{
+            return pet.id === id;
+        });
 
+      this.setState({
+          currentPet: pet
+      });
+
+    };
+
+  onRemovePet = (id) => {
+    // console.log('remove pet', id);
+    let updatedPets = this.state.petList;
+    updatedPets = updatedPets.filter(pet => pet.id !== id);
+    // console.log('updated', updatedPets);
+
+    this.setState({
+        petList: updatedPets
+    });
+  };
 
 
 
   render() {
+      // destructuring
     const { currentPet } = this.state;
     
     return (
@@ -36,8 +59,14 @@ class App extends Component {
           <SearchBar />
         </section>
           { /* Wave 2:  Where Pet Details should appear */ }
+          {this.state.currentPet && <PetDetails currentPet={currentPet}/>}
         <section className="pet-list-wrapper">
           { /* Wave 1:  Where PetList should appear */ }
+          <PetList
+              pets={this.state.petList}
+              onSelectPetCallback={this.onSelectPet}
+              onRemovePetCallback={this.onRemovePet}
+          />
         </section>
         <section className="new-pet-form-wrapper">
           { /* Wave 3:  Where NewPetForm should appear */ }

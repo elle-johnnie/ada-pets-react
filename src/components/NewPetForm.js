@@ -12,6 +12,11 @@ class NewPetForm extends Component {
 
     };
   }
+  handleAddPet(e){
+    e.preventDefault();
+
+
+  }
   
 
 
@@ -20,7 +25,13 @@ class NewPetForm extends Component {
       <form  className="new-pet-form">
         <h3>Add a Pet</h3>
         { /* A form should go here! */ }
+        <input type="text" name="name" />
+          <input type="text" name="species" />
+          <input type="text" name="location" />
+          <input type="text" name="about" />
+          <input type="text" name="" />
         <input className="btn btn-success new-pet-form--submit" type="submit" name="submit" value="Add a Pet" />
+      <button>Add Pet</button>
       </form>
     );
   }
